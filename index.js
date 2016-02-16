@@ -109,15 +109,15 @@ module.exports = {
 				$ = cheerio.load( section.content );
 				$bq = $( "blockquote" ).each(function () {
 $this = $(this);
-    $header = $this.find('h4:first-child');
-    if( !$header || $header.length == 0) {
+    $testheader = $this.find('h4:first-child');
+    if( !$testheader || $testheader.length == 0) {
         return;
     }
 
     var children = $this.children().toArray();
     $header = children.shift();
 
-    $title = $header.innerHTML;
+    $title = $($header).text();
     $parts = $title.split('::', 2);
 
     var style = options[$parts[0].toLowerCase()] ?  // look up annotation in options
@@ -128,29 +128,31 @@ $this = $(this);
         return;
     }
 
-    var icon = $(document.createElement('i'))
+    var icon = $('<i>')
                 .addClass('fa ' + style.picto);
 
     var title = ($parts[1] === "") ? $parts[0] : $parts.join(": ");
-    var panelTitle = $(document.createElement('div'))
+    var panelTitle = $('<h3>')
                     .addClass('panel-title')
-                    .append("<h3>")
                     .append(icon)
                     .append(" " + title)
-                    .append("</h3>")
                     ;
-    var panelBody = $(document.createElement('div'))
+    var panelHeading = $('<div>')
+                    .addClass('panel-heading')
+                    .append(panelTitle)
+                    ;
+    var panelBody = $('<div>')
                     .addClass('panel-body')
                     .append(children)
                     ;
 
 
-    var panel = $(document.createElement('div'))
+    var panel = $('<div>')
                 .addClass('panel panel-' + style.alert)
-                .append(panelTitle)
+                .append(panelHeading)
                 .append(panelBody);
 
-    $this.after(panel);
+    $this.before(panel);
     $this.remove();
 
 					// Replace by the transformed element
