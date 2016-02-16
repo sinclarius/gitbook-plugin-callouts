@@ -59,6 +59,15 @@ You can add user defined or override built-in callouts in `book.json` file:
 }
 ```
 
-Refer to [Bootstrap doc](http://getbootstrap.com/components/#panels) for panel value (`panel-` prefix is not needed).
+Alert values are:
+* primary
+* info
+* success
+* warning
+* danger
+
+Examples of each alert type are:
+
+![Examples](examples.png)
 
 Refer to [Font Awesome doc](http://fortawesome.github.io/Font-Awesome/icons/) for picto value.

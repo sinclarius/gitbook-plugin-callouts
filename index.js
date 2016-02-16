@@ -2,14 +2,15 @@ var cheerio = require( "cheerio" )
 	,$
 	,options = // map annotations to styles
 	{
+        /* primary */
+        "note": {
+            alert: "primary",
+            picto: "fa-edit"
+        },
 		/* info */
 		"info": {
 			alert: "info",
 			picto: "fa-info"
-		},
-		"note": {
-			alert: "info",
-			picto: "fa-edit"
 		},
 		"tag": {
 			alert: "info",
