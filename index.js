@@ -19,10 +19,6 @@ var cheerio = require( "cheerio" )
 			alert: "info",
 			picto: "fa-comment-o"
 		},
-		"todo": {
-			alert: "info",
-			picto: "fa-bookmark"
-		},
 		/* success */
 		"hint": {
 			alert: "success",
@@ -40,6 +36,10 @@ var cheerio = require( "cheerio" )
 		"caution": {
 			alert: "warning",
 			picto: "fa-exclamation-triangle"
+		},
+		"todo": {
+			alert: "warning",
+			picto: "fa-bookmark"
 		},
 		/* danger */
 		"danger": {
@@ -59,12 +59,6 @@ var cheerio = require( "cheerio" )
 			alert: "quote",
 			picto: "fa-quote-left"
 		},
-
-		/* Default */
-		"default": {
-			alert: "quote",
-			picto: "fa-quote-left"
-		}
 	}
 ;
 
@@ -80,14 +74,14 @@ module.exports = {
 		// This is called before the book is generated
 		init  : function ()
 		{
-			// console.log( "richquotes init!" );
-			if( this.options.pluginsConfig && this.options.pluginsConfig.richquotes )
+			// console.log( "callouts init!" );
+			if( this.options.pluginsConfig && this.options.pluginsConfig.callouts )
 			{
-				// richquotes is a POJO, save to use for-in
-				var richquotes = this.options.pluginsConfig.richquotes;
-				for (key in richquotes) {
-					// console.log(key, richquotes[key]);
-					options[key] = richquotes[key] === false? undefined : richquotes[key];
+				// callouts is a POJO, save to use for-in
+				var callouts = this.options.pluginsConfig.callouts;
+				for (key in callouts) {
+					// console.log(key, callouts[key]);
+					options[key] = callouts[key] === false? undefined : callouts[key];
 				}
 			}
 		},
@@ -113,35 +107,55 @@ module.exports = {
 				}
 
 				$ = cheerio.load( section.content );
-				$bq = $( "blockquote" ).each(
-					function ()
-					{
-						$this = $( this );
-						$strong = $this.find( "p:first-child > strong:first-child" );
-						if( !$strong || $strong.length == 0)
-						{
-							return;
-						}
+				$bq = $( "blockquote" ).each(function () {
+$this = $(this);
+    $header = $this.find('h4:first-child');
+    if( !$header || $header.length == 0) {
+        return;
+    }
 
-						style = options[$strong.text().toLowerCase()]?  // look up annotation in options
-							options[$strong.text().toLowerCase()] :
-							options['default'];
-						if (!style) {
-							return;
-						}
+    var children = $this.children().toArray();
+    $header = children.shift();
 
-						$strong
-							.addClass( 'fa fa-4x ' + style.picto )
-							.empty()
-							.remove()
-							;
-						$this.addClass( 'clearfix alert alert-' + style.alert );
-						$this.prepend( $strong );
+    $title = $header.innerHTML;
+    $parts = $title.split('::', 2);
 
-						// Replace by the transformed element
-						section.content = $.html();
-					}
-				);
+    var style = options[$parts[0].toLowerCase()] ?  // look up annotation in options
+                options[$parts[0].toLowerCase()] :
+                options['default'];
+
+    if (!style) {
+        return;
+    }
+
+    var icon = $(document.createElement('i'))
+                .addClass('fa ' + style.picto);
+
+    var title = ($parts[1] === "") ? $parts[0] : $parts.join(": ");
+    var panelTitle = $(document.createElement('div'))
+                    .addClass('panel-title')
+                    .append("<h3>")
+                    .append(icon)
+                    .append(" " + title)
+                    .append("</h3>")
+                    ;
+    var panelBody = $(document.createElement('div'))
+                    .addClass('panel-body')
+                    .append(children)
+                    ;
+
+
+    var panel = $(document.createElement('div'))
+                .addClass('panel panel-' + style.alert)
+                .append(panelTitle)
+                .append(panelBody);
+
+    $this.after(panel);
+    $this.remove();
+
+					// Replace by the transformed element
+					section.content = $.html();
+				});
 			}
 
 			return page;

@@ -1,25 +1,31 @@
-Gitbook plugin : Transform annotated quotes to notes
-==============
+# Gitbook Plugin: Transform annotated quotes to callouts
 
-For gitbook 0.4.2+
+This plugin was modified from [erixtekila/gitbook-plugin-richquotes](https://github.com/erixtekila/gitbook-plugin-richquotes) to create callouts similar to the ones provided by [Sphinx](http://www.sphinx-doc.org/).
 
-Annotated notes are an extension of markdown blockquotes.
-Supported annotations :
+## How to create callouts
 
-- `> **Info** Info`
-- `> **Note** Note`
-- `> **Tag** Tag`
-- `> **Comment** Comment`
-- `> **Hint** Hint`
-- `> **Success** Success`
-- `> **Warning** Warning`
-- `> **Caution** Caution`
-- `> **Danger** Danger`
-- `> **Quote** Quote`
+Callouts are an extension of markdown blockquotes. All callouts must start with a h4 header, the callout type, and an optional title. The format for this is:
 
-![Preview of richquotes](preview.png)
+```
+> #### type::title
 
-Annotations are case-insensitive.
+(blockquote) (h4) (type)::(title)
+```
+
+Supported default callouts are:
+
+- `> #### Info::Info`
+- `> #### Note::Note`
+- `> #### Tag::Tag`
+- `> #### Comment::Comment`
+- `> #### Hint::Hint`
+- `> #### Success::Success`
+- `> #### Warning::Warning`
+- `> #### Caution::Caution`
+- `> #### Danger::Danger`
+- `> #### Quote::Quote`
+
+Callouts are case-insensitive.
 
 #### Installation
 
@@ -27,22 +33,22 @@ Add this plugin to your `book.json`:
 
 ```js
 {
-	"plugins": ["richquotes"]
+	"plugins": ["callouts"]
 }
 ```
 
 Then run `gitbook install` to download and install the plugin.
 
-#### Override built-in annotations
+#### Override built-in callouts
 
-You can add user defined or override built-in annotations in `book.json` file:
+You can add user defined or override built-in callouts in `book.json` file:
 
 ```js
 {
-	"plugins": ["richquotes"],
+	"plugins": ["callouts"],
 	"pluginsConfig":
 	{
-		"richquotes":
+		"callouts":
 		{
 			"star": {
 				"alert": "warning",
@@ -53,24 +59,6 @@ You can add user defined or override built-in annotations in `book.json` file:
 }
 ```
 
-Refer to [Bootstrap doc](http://getbootstrap.com/components/#alerts) for alert value (`alert-` prefix is not needed).
+Refer to [Bootstrap doc](http://getbootstrap.com/components/#panels) for panel value (`panel-` prefix is not needed).
 
 Refer to [Font Awesome doc](http://fortawesome.github.io/Font-Awesome/icons/) for picto value.
-
-
-#### Disable default quote
-
-By default `richquote` will show a quote annotation. You can disable this behaviour in `book.json` file:
-
-```js
-{
-	"plugins": ["richquotes"],
-	"pluginsConfig":
-	{
-		"richquotes":
-		{
-			"default": false
-		}
-	}
-}
-```
