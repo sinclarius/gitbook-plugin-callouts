@@ -6,10 +6,20 @@ This plugin was modified from [erixtekila/gitbook-plugin-richquotes](https://git
 
 Callouts are an extension of markdown blockquotes. All callouts must start with a h4 header, the callout type, and an optional title. The format for this is:
 
+For Markdown:
+
 ```
 > #### type::title
+>
+> cotent
+```
 
-(blockquote) (h4) (type)::(title)
+For AsciiDoc:
+
+```
+> ==== type::title
+> 
+> content
 ```
 
 Supported default callouts are:
