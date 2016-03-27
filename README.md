@@ -81,3 +81,22 @@ Examples of each alert type are:
 ![Examples](examples.png)
 
 Refer to [Font Awesome doc](http://fortawesome.github.io/Font-Awesome/icons/) for picto value.
+
+##### Show type in header
+
+As shown above, the callout type (`info`, `warning`, `danger`, etc.) will be shown in the callout header (`type`: `title`). If you do _not_ want to have the type displayed in the header, you can set the `showTypeInHeader` option to false.
+
+```js
+{
+    "plugins": ["callouts"],
+    "pluginsConfig":
+    {
+        "callouts":
+        {
+            "showTypeInHeader": false
+        }
+    }
+}
+```
+
+As long as you have a title defined (ex. `type::title`) the type will not be displayed in the header. The type _will_ be displayed in the header if no title is defined (ex. `type::`).

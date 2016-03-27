@@ -2,6 +2,8 @@ var cheerio = require( "cheerio" )
     ,$
     ,options = // map annotations to styles
     {
+        /* PLUGIN SETTINGS */
+        "showTypeInHeader": true,
         /* primary */
         "note": {
             alert: "primary",
@@ -134,7 +136,14 @@ var cheerio = require( "cheerio" )
                     var icon = $('<i>')
                     .addClass('fa ' + style.picto);
 
-                    var title = ($parts[1] === "") ? $parts[0] : $parts.join(": ");
+                    // This checks the showTypeInHeader option and if false will not show the section
+                    // type when header text is present.
+                    if (options["showTypeInHeader"] === true) {
+                        var title = ($parts[1] === "") ? $parts[0] : $parts.join(": ");
+                    } else {
+                        var title = ($parts[1] === "") ? $parts[0] : $parts[1];
+                    }
+
                     var panelTitle = $('<h3>')
                     .addClass('panel-title')
                     .append(icon)
