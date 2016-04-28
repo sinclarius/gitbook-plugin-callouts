@@ -76,7 +76,7 @@ Alert values are:
 * warning
 * danger
 
-Examples of each alert type are:
+Examples of each alert type (both "White" and "Night" modes supported) are:
 
 ![Examples](examples.png)
 
