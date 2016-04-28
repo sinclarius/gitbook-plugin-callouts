@@ -101,11 +101,9 @@ var cheerio = require( "cheerio" )
             ,style
             ;
 
-            for ( var i in page.sections )
-            {
+            for ( var i in page.sections ) {
                 section = page.sections[i];
-                if ( section.type !== "normal" )
-                {
+                if ( section.type !== "normal" ) {
                     continue;
                 }
 
@@ -145,24 +143,24 @@ var cheerio = require( "cheerio" )
                     }
 
                     var panelTitle = $('<h3>')
-                    .addClass('panel-title')
-                    .append(icon)
-                    .append(" " + title)
+                        .addClass('panel-title')
+                        .append(icon)
+                        .append(" " + title)
                     ;
                     var panelHeading = $('<div>')
-                    .addClass('panel-heading')
-                    .append(panelTitle)
+                        .addClass('panel-heading')
+                        .append(panelTitle)
                     ;
                     var panelBody = $('<div>')
-                    .addClass('panel-body')
-                    .append(children)
+                        .addClass('panel-body')
+                        .append(children)
                     ;
 
 
                     var panel = $('<div>')
-                    .addClass('panel panel-' + style.alert)
-                    .append(panelHeading)
-                    .append(panelBody);
+                        .addClass('panel panel-' + style.alert)
+                        .append(panelHeading)
+                        .append(panelBody);
 
                     $this.before(panel);
                     $this.remove();
@@ -178,15 +176,15 @@ var cheerio = require( "cheerio" )
                     $testheader = children.first().text();
                     children = children.toArray();
                     children.shift();
-                    if(
+                    if (
                         !$testheader ||
                         $testheader.length === 0 ||
                         $testheader.substr(0,5) !== '==== '
-                        ) {
+                    ) {
                         return;
-                }
+                    }
 
-                $parts = $testheader.substr(5).split('::')
+                    $parts = $testheader.substr(5).split('::');
 
                     var style = options[$parts[0].toLowerCase()] ?  // look up annotation in options
                     options[$parts[0].toLowerCase()] :
@@ -196,29 +194,32 @@ var cheerio = require( "cheerio" )
                         return;
                     }
 
-                    var icon = $('<i>')
-                    .addClass('fa ' + style.picto);
+                    var icon = $('<i>').addClass('fa ' + style.picto);
 
-                    var title = ($parts[1] === "") ? $parts[0] : $parts.join(": ");
+                    if (options["showTypeInHeader"] === true) {
+                        var title = ($parts[1] === "") ? $parts[0] : $parts.join(": ");
+                    } else {
+                        var title = ($parts[1] === "") ? $parts[0] : $parts[1];
+                    }
+
                     var panelTitle = $('<h3>')
-                    .addClass('panel-title')
-                    .append(icon)
-                    .append(" " + title)
+                        .addClass('panel-title')
+                        .append(icon)
+                        .append(" " + title)
                     ;
                     var panelHeading = $('<div>')
-                    .addClass('panel-heading')
-                    .append(panelTitle)
+                        .addClass('panel-heading')
+                        .append(panelTitle)
                     ;
                     var panelBody = $('<div>')
-                    .addClass('panel-body')
-                    .append(children)
+                        .addClass('panel-body')
+                        .append(children)
                     ;
 
-
                     var panel = $('<div>')
-                    .addClass('panel panel-' + style.alert)
-                    .append(panelHeading)
-                    .append(panelBody);
+                        .addClass('panel panel-' + style.alert)
+                        .append(panelHeading)
+                        .append(panelBody);
 
                     $this.before(panel);
                     $this.remove();
