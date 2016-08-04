@@ -4,7 +4,7 @@
   "main": "index.js",
   "version": "0.0.10",
   "engines": {
-    "gitbook": "*"
+    "gitbook": "3.*"
   },
   "homepage": "https://github.com/gubler/gitbook-plugin-callouts",
   "repository": {
