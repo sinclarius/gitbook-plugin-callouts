@@ -43,14 +43,14 @@
 }
 
 .panel-primary {
-  border-color: #337ab7;
+  border-color: #DADE43;
   background-color: #D8EDF8;
 }
 
 .panel-primary > .panel-heading {
   color: #ffffff;
-  background-color: #337ab7;
-  border-color: #337ab7;
+  background-color: #DADE43;
+  border-color: #DADE43;
 }
 
 .panel-success {
