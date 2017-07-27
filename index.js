@@ -44,17 +44,17 @@ var cheerio = require( "cheerio" )
             alert: "warning",
             picto: "fa-bookmark"
         },
-        /* danger */
-        "danger": {
-            alert: "danger",
+        /* resource */
+        "resource": {
+            alert: "resource",
             picto: "fa-times-circle"
         },
         "fixme": {
-            alert: "danger",
+            alert: "resource",
             picto: "fa-bug"
         },
         "bug": {
-            alert: "danger",
+            alert: "resource",
             picto: "fa-bug"
         },
         /* quote */

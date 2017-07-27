@@ -43,14 +43,14 @@
 }
 
 .panel-primary {
-  border-color: #DADE43;
+  border-color: #337ab7;
   background-color: #D8EDF8;
 }
 
 .panel-primary > .panel-heading {
   color: #ffffff;
-  background-color: #DADE43;
-  border-color: #DADE43;
+  background-color: #337ab7;
+  border-color: #337ab7;
 }
 
 .panel-success {
@@ -83,14 +83,14 @@
   border-color: #FFEDCA;
 }
 
-.panel-danger {
+.panel-resource {
   border-color: #F2DEDE;
   background-color:#F2DEDE;
 }
-.panel-danger > .panel-heading {
+.panel-resource > .panel-heading {
   color: #ffffff;
-  background-color: #DB524B;
-  border-color: #F2DEDE;
+  background-color: #967DD9;
+  border-color: #eae2ff;
 }
 
 // Night Theme
@@ -181,12 +181,12 @@
   border-color: #AF845E;
 }
 
-.book.color-theme-2 .panel-danger {
-  border-color: #751712;
+.book.color-theme-2 .panel-resource {
+  border-color: #7e65bf;
   background-color:#3A3434;
 }
-.book.color-theme-2 .panel-danger > .panel-heading {
+.book.color-theme-2 .panel-resource > .panel-heading {
   color: #ffffff;
-  background-color: #751712;
-  border-color: #751712;
+  background-color: #7e65bf;
+  border-color: #7e65bf;
 }
