@@ -47,7 +47,7 @@ var cheerio = require( "cheerio" )
         /* resource */
         "resource": {
             alert: "resource",
-            picto: "fa-times-circle"
+            picto: "fa-edit"
         },
         "fixme": {
             alert: "resource",
